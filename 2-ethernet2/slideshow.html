@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Networking Brain Dump</title>
+		<style>
+			/*
+ * slides.css for HTML slideshows powered by remarkjs (http://remarkjs.com/).
+ * Original author: Arthur Mensch
+ * https://github.com/arthurmensch/decks/tree/master/common/
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,500,500italic,400italic,300italic,300,700,700italic&subset=latin,greek-ext,greek,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700italic,700&subset=latin,greek,greek-ext,latin-ext);
+
+body {
+  font-family: 'Ubuntu';
+  font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Ubuntu';
+  font-weight: 500;
+  margin-top: 0;
+}
+h1 {
+  margin-top: 0.5em;
+}
+h2 {
+  font-size: 140%;
+  line-height: 130%;
+}
+h3 {
+  font-size: 120%;
+  line-height: 130%;
+}
+
+li {
+  font-size: 120%;
+  line-height: 160%;
+}
+
+li p {
+    font-size: 100%;
+    line-height: 160%;
+}
+
+li ul li {
+    font-size: 90%;
+    line-height: 180%;
+}
+
+p {
+font-size: 120%;
+line-height: 160%;
+}
+
+.singleimg img {
+  max-width: 100%;
+  max-height: 600px;
+  /*border: 1px solid #ddd;*/
+}
+
+.big img {
+    display: block;
+    margin-left: -10%;
+    max-width: 120%;
+}
+table {
+  margin: 0 auto 0.8em;
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid #ddd;
+  padding: 0.3em 0.5em;
+}
+
+.bgheader h1 {
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 50%;
+  padding: 0.5em;
+  color: white;
+  border-radius: .5em;
+}
+.middlebelowheader {
+  /* This fixed size height was found to work well with the slide
+     scaling mechanism of remark.js:
+   */
+  height: 500px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.widespace h2 {
+  line-height: 200%;
+}
+.big .remark-code  {
+  font-size: 200%;
+}
+.remark-code, .remark-inline-code {
+   font-family: 'Ubuntu Mono';
+}
+
+.medium .remark-code  {
+  font-size: 160%;
+}
+
+.mmedium .remark-code  {
+  font-size: 99%;
+}
+
+.affiliations img {
+  height: 100px;
+  margin: 2em;
+  /*margin-top: 1em;*/
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.credits {
+  font-style: italic;
+  font-size: 70%;
+}
+
+.bunchoflogos img {
+  max-height: 100px;
+  padding: 1em;
+}
+
+.bunchoflogos p {
+  text-align: center;
+  width: 750px;
+}
+
+.center {
+    text-align: center;
+}
+
+.column:first-of-type {float:left}
+.column:nth-of-type(2) {float:right}
+
+.split-30 .column:first-of-type {width: 30%}
+.split-30 .column:nth-of-type(2) {width: 70%}
+
+.split-40 .column:first-of-type {width: 35%}
+.split-40 .column:nth-of-type(2) {width: 65%}
+
+.split-50 .column:first-of-type {width: 50%}
+.split-50 .column:nth-of-type(2) {width: 50%}
+
+.split-60 .column:first-of-type {width: 60%}
+.split-60 .column:nth-of-type(2) {width: 40%}
+
+.split-70 .column:first-of-type {width: 70%}
+.split-70 .column:nth-of-type(2) {width: 30%}
+
+.small p {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.small li {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.small li p {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.important {
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 50%;
+    padding: 0.5em;
+    color: white;
+    display: block;
+    border-radius: .5em;
+    }
+
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+
+/* Special roles */
+.black  { color:black; }
+.gray { color:gray; }
+.silver { color:silver; }
+.white  { color:white; }
+.maroon { color:maroon; }
+.red  { color:red; }
+.magenta  { color:magenta; }
+.fuchsia  { color:fuchsia; }
+.pink { color:pink; }
+.orange { color:orange; }
+.yellow { color:yellow; }
+.lime { color:lime; }
+.green  { color:green; }
+.olive  { color:olive; }
+.teal { color:teal; }
+.cyan { color:cyan; }
+.aqua { color:aqua; }
+.blue { color:blue; }
+.navy { color:navy; }
+.purple { color:purple; }
+.under  { text-decoration: underline; }
+.over   { text-decoration: overline; }
+.blink  { text-decoration: blink; }
+.line   { text-decoration: line-through; }
+.strike { text-decoration: line-through; }
+.it   { font-style: italic; }
+.small   { font-size: small; }
+.large   { font-size: large; }
+
+		</style>
+	</head>
+	<body>
+		<textarea id="source">
+# Networking Brain Dump
+
+### Episode 2: Towards modern Ethernet
+
+---
+# Last time on NBD...
+- Ethernet on shared medium
+- MAC Addresses: unicast, multicast, broadcast
+- Twisted pair and hubs
+
+---
+# Two worlds united
+- Consider an org with R&D and QA depts
+- Each has their own network segment
+- Want to work together
+- How do you join their networks?
+
+---
+# Can they splice?
+- Connect coax ends together
+  - Or connect hubs
+- Problems:
+  - Cable length limits
+    - Can be cured with repeaters
+  - Shared medium not designed for lots of hosts
+
+---
+# Better solution
+- Put an intelligent "bridge" device
+
+<img src="bridge.jpeg" width="400px">
+
+---
+# Ethernet bridge
+- Has 2 ports: A and B
+- Multicast packets are always passed between ports
+- Remembers source addresess and port it has seen
+- Only forwards unicast to other port if not local
+
+---
+# Let's make it bigger
+- What if Accounting wants to join the party?
+- Same idea, need 3 ports
+
+---
+# Ethernet switch
+- A bridge with lots of ports (e.g. 24)
+- Each segment is reduced to a single host
+- Learns MAC-port mapping
+  - Listen / flood
+- No more collisions
+
+---
+# Multiple bridges
+- Switch has limited number of ports
+- You can plug one switch into another
+  - Creates different topologies
+- Example topology: tree
+
+---
+# Watch out for loops
+- Switches form a loop?
+- Multicast packets forwarded forever!
+- But unicasts floods will also loop!
+
+---
+# Loop elimination
+- Track down all loop causing links and disable them
+- Should produce a spanning-tree
+- Can't just use Kruskal's or Prim's algo
+
+---
+# Spanning Tree Protocol (STP)
+- Step 1: Elect a root
+  - Lowest Priority:MAC wins
+- Step 2: Find ports on path to root
+  - Root ports and designated ports
+- Step 3: Block the rest
+  - Remainging ports are blocked
+
+---
+# Algoryhme by Radia Perlman
+<pre>
+I think that I shall never see
+A graph more lovely than a tree.
+A tree whose crucial property
+Is loop-free connectivity.
+A tree that must be sure to span
+So packets can reach every LAN.
+First, the root must be selected.
+By ID, it is elected.
+Least-cost paths from root are traced.
+In the tree, these paths are placed.
+A mesh is made by folks like me,
+Then bridges find a spanning tree.
+</pre>
+
+---
+# STP limitations
+- Can't use redudant links for load balancing
+- Topology changes take 30+ secs
+
+---
+# STP successors
+- Rapid STP
+- Spanning Tree Bridging (STB)
+- TRILL
+- L3 switching
+
+		</textarea>
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+		<script></script>
+	</body>
+</html>
