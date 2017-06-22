@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Networking Brain Dump</title>
+		<style>
+			/*
+ * slides.css for HTML slideshows powered by remarkjs (http://remarkjs.com/).
+ * Original author: Arthur Mensch
+ * https://github.com/arthurmensch/decks/tree/master/common/
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,500,500italic,400italic,300italic,300,700,700italic&subset=latin,greek-ext,greek,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700italic,700&subset=latin,greek,greek-ext,latin-ext);
+
+body {
+  font-family: 'Ubuntu';
+  font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Ubuntu';
+  font-weight: 500;
+  margin-top: 0;
+}
+h1 {
+  margin-top: 0.5em;
+}
+h2 {
+  font-size: 140%;
+  line-height: 130%;
+}
+h3 {
+  font-size: 120%;
+  line-height: 130%;
+}
+
+li {
+  font-size: 120%;
+  line-height: 160%;
+}
+
+li p {
+    font-size: 100%;
+    line-height: 160%;
+}
+
+li ul li {
+    font-size: 90%;
+    line-height: 180%;
+}
+
+p {
+font-size: 120%;
+line-height: 160%;
+}
+
+.singleimg img {
+  max-width: 100%;
+  max-height: 600px;
+  /*border: 1px solid #ddd;*/
+}
+
+.big img {
+    display: block;
+    margin-left: -10%;
+    max-width: 120%;
+}
+table {
+  margin: 0 auto 0.8em;
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid #ddd;
+  padding: 0.3em 0.5em;
+}
+
+.bgheader h1 {
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 50%;
+  padding: 0.5em;
+  color: white;
+  border-radius: .5em;
+}
+.middlebelowheader {
+  /* This fixed size height was found to work well with the slide
+     scaling mechanism of remark.js:
+   */
+  height: 500px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.widespace h2 {
+  line-height: 200%;
+}
+.big .remark-code  {
+  font-size: 200%;
+}
+.remark-code, .remark-inline-code {
+   font-family: 'Ubuntu Mono';
+}
+
+.medium .remark-code  {
+  font-size: 160%;
+}
+
+.mmedium .remark-code  {
+  font-size: 99%;
+}
+
+.affiliations img {
+  height: 100px;
+  margin: 2em;
+  /*margin-top: 1em;*/
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.credits {
+  font-style: italic;
+  font-size: 70%;
+}
+
+.bunchoflogos img {
+  max-height: 100px;
+  padding: 1em;
+}
+
+.bunchoflogos p {
+  text-align: center;
+  width: 750px;
+}
+
+.center {
+    text-align: center;
+}
+
+.column:first-of-type {float:left}
+.column:nth-of-type(2) {float:right}
+
+.split-30 .column:first-of-type {width: 30%}
+.split-30 .column:nth-of-type(2) {width: 70%}
+
+.split-40 .column:first-of-type {width: 35%}
+.split-40 .column:nth-of-type(2) {width: 65%}
+
+.split-50 .column:first-of-type {width: 50%}
+.split-50 .column:nth-of-type(2) {width: 50%}
+
+.split-60 .column:first-of-type {width: 60%}
+.split-60 .column:nth-of-type(2) {width: 40%}
+
+.split-70 .column:first-of-type {width: 70%}
+.split-70 .column:nth-of-type(2) {width: 30%}
+
+.small p {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.small li {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.small li p {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.important {
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 50%;
+    padding: 0.5em;
+    color: white;
+    display: block;
+    border-radius: .5em;
+    }
+
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+
+/* Special roles */
+.black  { color:black; }
+.gray { color:gray; }
+.silver { color:silver; }
+.white  { color:white; }
+.maroon { color:maroon; }
+.red  { color:red; }
+.magenta  { color:magenta; }
+.fuchsia  { color:fuchsia; }
+.pink { color:pink; }
+.orange { color:orange; }
+.yellow { color:yellow; }
+.lime { color:lime; }
+.green  { color:green; }
+.olive  { color:olive; }
+.teal { color:teal; }
+.cyan { color:cyan; }
+.aqua { color:aqua; }
+.blue { color:blue; }
+.navy { color:navy; }
+.purple { color:purple; }
+.under  { text-decoration: underline; }
+.over   { text-decoration: overline; }
+.blink  { text-decoration: blink; }
+.line   { text-decoration: line-through; }
+.strike { text-decoration: line-through; }
+.it   { font-style: italic; }
+.small   { font-size: small; }
+.large   { font-size: large; }
+
+		</style>
+	</head>
+	<body>
+		<textarea id="source">
+# Networking Brain Dump
+
+### Episode 4: Internet Protocol
+
+---
+# No NBD next week
+- I'll be out of town
+
+---
+# Last time on NBD...
+- Ethernet has scaling limits
+- Scale by routing
+- Routers use prefix tables
+
+---
+# Routed network
+
+<img src="network.jpg" width="400px">
+
+---
+# Routing tables
+- Core to the router
+- Where do they come from?
+ - Can be configured manually
+ - But let's not!
+
+---
+# Routing protocols
+- Given a graph of routers
+- Each router is connected to a subnet
+- All routers need per-prefix optimal path
+  - Compute shortest paths
+
+---
+# Distance-vector protocols
+- Shares routing table with the neighbors
+- Neighbor merges own and neighbor tables
+- E.g. RIP
+
+---
+# Link-state
+- Discovers neighbor routers
+- Shares what's discovered with the neighbors
+- Each router runs Dijkstra (or Bellman-Ford)
+- E.g: OSPF, IS-IS
+
+---
+# Routing on the Internet
+- Large orgs become Autonomous Systms (AS)
+- Use whatever to route inside
+- Inter AS routing:
+  - Uses Border Gateway Protocol (BGP)
+  - Not for novices!
+
+---
+# TTL
+- Routing loops are bad
+  - But not catastrophic
+- Sender sets TTL (e.g. 64)
+  - Each router decrements TTL
+  - Drops packet if zero
+    - Sends back ICMP message
+
+---
+# Fragmentation
+- MTUs vary across the network
+- IP guarantees 64Kb segments
+- Routers break-up segments
+- Destination host reassembles
+
+---
+# Fragmentation (example)
+- Router gets 4096 byte segment
+- Next hop MTU is 1500 bytes
+- Breaks up into 3 fragments:
+  - 1: ID=123 FragOff=0 MF=1
+  - 2: ID=123 FragOff=1500 MF=1
+  - 3: ID=123 FragOff=3000 MF=0
+
+---
+# Fragmentation
+- Pros:
+  - Sender can always send upto 64Kb
+
+- Cons:
+  - Complicates routers and IP stack
+  - Fragment drop causes segment discard
+  - Attack vector
+
+---
+# Fragmentation: Don't!
+- IP has "Don't Fragment" (DF) flag
+- If can't fit next-hop MTU:
+  - Drops segment
+  - Sends back ICMP message
+
+---
+# Internet Control Message Protocol (ICMP)
+- Helper protocol
+- Rides on top of IP header
+- Specifies a number of messages
+
+---
+# ICMP: Ping
+- Used by `ping` utility
+- Ping-pongs a payload
+
+---
+# ICMP: TTL Exceeded
+- Sent by router dropping the segment
+
+---
+# Intermediate Routers
+
+- for i in 1..N:
+  - send IP segment with TTL=i
+  - wait for ICMP TTL exceeded
+
+---
+# traceroute
+```
+$ traceroute google.com
+traceroute to google.com (216.58.194.206), 64 hops max, 52 byte packets
+ 1  10.0.1.1 (10.0.1.1)  1.466 ms  0.992 ms  0.923 ms
+ 2  96.120.88.185 (96.120.88.185)  14.632 ms  14.254 ms  13.523 ms
+ 3  te-0-6-0-13-sur04.sanmateo.ca.sfba.comcast.net (68.85.101.41)  11.774 ms  12.512 ms  12.332 ms
+ 4  be-318-ar01.hayward.ca.sfba.comcast.net (162.151.79.113)  13.637 ms  23.317 ms  13.885 ms
+ 5  be-33651-cr01.9greatoaks.ca.ibone.comcast.net (68.86.94.153)  14.791 ms  15.138 ms  70.511 ms
+ 6  be-12582-pe02.11greatoaks.ca.ibone.comcast.net (68.86.82.82)  22.298 ms  21.401 ms  13.564 ms
+ 7  as15169-3-c.11greatoaks.ca.ibone.comcast.net (23.30.206.42)  13.898 ms  18.043 ms  13.927 ms
+ 8  108.170.242.225 (108.170.242.225)  13.777 ms
+    108.170.243.1 (108.170.243.1)  13.165 ms
+    108.170.242.225 (108.170.242.225)  12.688 ms
+ 9  108.170.237.105 (108.170.237.105)  32.630 ms
+    108.170.237.107 (108.170.237.107)  21.315 ms
+    108.170.237.105 (108.170.237.105)  14.721 ms
+10  sfo03s01-in-f206.1e100.net (216.58.194.206)  14.377 ms  16.335 ms  13.955 ms
+```
+---
+# ICMP: Fragmentation Needed
+- If DF is set and next-hop MTU is too small
+- Includes Next-Hop MTU
+
+---
+# Path MTU (PMTU) Discovery
+- PMTU is *smallest* MTU in a path
+- Discover by:
+  - MTU = Own-MTU
+  - While packet does not reach dest:
+    - Send IP segment with DF=1
+    - If "Fragmentation Needed" received:
+      - MTU = Next-Hop MTU
+
+---
+# IPv6
+- Uses 128-bit addresses
+  - Each cell in your body can have an IP!
+- No Fragmentation
+- NDP (ICMP messages) instead of ARP
+- Slow to adopt :(
+
+		</textarea>
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+		<script></script>
+	</body>
+</html>
