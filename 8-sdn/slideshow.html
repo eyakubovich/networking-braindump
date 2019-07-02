@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Networking Brain Dump</title>
+		<style>
+			/*
+ * slides.css for HTML slideshows powered by remarkjs (http://remarkjs.com/).
+ * Original author: Arthur Mensch
+ * https://github.com/arthurmensch/decks/tree/master/common/
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,500,500italic,400italic,300italic,300,700,700italic&subset=latin,greek-ext,greek,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700italic,700&subset=latin,greek,greek-ext,latin-ext);
+
+body {
+  font-family: 'Ubuntu';
+  font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Ubuntu';
+  font-weight: 500;
+  margin-top: 0;
+}
+h1 {
+  margin-top: 0.5em;
+}
+h2 {
+  font-size: 140%;
+  line-height: 130%;
+}
+h3 {
+  font-size: 120%;
+  line-height: 130%;
+}
+
+li {
+  font-size: 120%;
+  line-height: 160%;
+}
+
+li p {
+    font-size: 100%;
+    line-height: 160%;
+}
+
+li ul li {
+    font-size: 90%;
+    line-height: 180%;
+}
+
+p {
+font-size: 120%;
+line-height: 160%;
+}
+
+.singleimg img {
+  max-width: 100%;
+  max-height: 600px;
+  /*border: 1px solid #ddd;*/
+}
+
+.big img {
+    display: block;
+    margin-left: -10%;
+    max-width: 120%;
+}
+table {
+  margin: 0 auto 0.8em;
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid #ddd;
+  padding: 0.3em 0.5em;
+}
+
+.bgheader h1 {
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 50%;
+  padding: 0.5em;
+  color: white;
+  border-radius: .5em;
+}
+.middlebelowheader {
+  /* This fixed size height was found to work well with the slide
+     scaling mechanism of remark.js:
+   */
+  height: 500px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.widespace h2 {
+  line-height: 200%;
+}
+.big .remark-code  {
+  font-size: 200%;
+}
+.remark-code, .remark-inline-code {
+   font-family: 'Ubuntu Mono';
+}
+
+.medium .remark-code  {
+  font-size: 160%;
+}
+
+.mmedium .remark-code  {
+  font-size: 99%;
+}
+
+.affiliations img {
+  height: 100px;
+  margin: 2em;
+  /*margin-top: 1em;*/
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.credits {
+  font-style: italic;
+  font-size: 70%;
+}
+
+.bunchoflogos img {
+  max-height: 100px;
+  padding: 1em;
+}
+
+.bunchoflogos p {
+  text-align: center;
+  width: 750px;
+}
+
+.center {
+    text-align: center;
+}
+
+.column:first-of-type {float:left}
+.column:nth-of-type(2) {float:right}
+
+.split-30 .column:first-of-type {width: 30%}
+.split-30 .column:nth-of-type(2) {width: 70%}
+
+.split-40 .column:first-of-type {width: 35%}
+.split-40 .column:nth-of-type(2) {width: 65%}
+
+.split-50 .column:first-of-type {width: 50%}
+.split-50 .column:nth-of-type(2) {width: 50%}
+
+.split-60 .column:first-of-type {width: 60%}
+.split-60 .column:nth-of-type(2) {width: 40%}
+
+.split-70 .column:first-of-type {width: 70%}
+.split-70 .column:nth-of-type(2) {width: 30%}
+
+.small p {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.small li {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.small li p {
+    font-size: 100%;
+    line-height: 110%;
+}
+
+.important {
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 50%;
+    padding: 0.5em;
+    color: white;
+    display: block;
+    border-radius: .5em;
+    }
+
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+
+/* Special roles */
+.black  { color:black; }
+.gray { color:gray; }
+.silver { color:silver; }
+.white  { color:white; }
+.maroon { color:maroon; }
+.red  { color:red; }
+.magenta  { color:magenta; }
+.fuchsia  { color:fuchsia; }
+.pink { color:pink; }
+.orange { color:orange; }
+.yellow { color:yellow; }
+.lime { color:lime; }
+.green  { color:green; }
+.olive  { color:olive; }
+.teal { color:teal; }
+.cyan { color:cyan; }
+.aqua { color:aqua; }
+.blue { color:blue; }
+.navy { color:navy; }
+.purple { color:purple; }
+.under  { text-decoration: underline; }
+.over   { text-decoration: overline; }
+.blink  { text-decoration: blink; }
+.line   { text-decoration: line-through; }
+.strike { text-decoration: line-through; }
+.it   { font-style: italic; }
+.small   { font-size: small; }
+.large   { font-size: large; }
+
+		</style>
+	</head>
+	<body>
+		<textarea id="source">
+# Networking Brain Dump
+
+### Episode 8: SDN
+
+---
+# Last time on NBD...
+- DNS
+  - How google.com becomes 172.217.6.46
+- Finished TCP/IP suite
+
+---
+# The cloud era
+- VMs present unique challenges
+- We considered 1 host : 1 MAC : 1 IP
+- Many VMs per host
+  - Each VM wants an IP
+- VMs are transient and mobile
+- Network needs virtualization
+
+---
+# Before SDNs: VLAN (802.1Q) (circa 2000)
+
+<img src="vlan.jpg" width="600px">
+
+---
+# Software switches
+- Recall that a switch:
+  - Learns by flooding
+  - Maitains forwarding database
+- Easy to do in software
+- Usually done in the kernel
+
+---
+# Linux's switches
+- "Native" bridge
+- OpenVSwitch
+- Both can also do L3
+
+---
+# Virtual bridging
+
+<img src="vm-bridged.jpg" width="600px">
+
+---
+# Virtual bridging
+- Pros:
+  - Straightforward setup
+  - Low overhead
+  - VMs are on "native" network
+- Cons:
+  - Large broadcast domain
+  - Impacts the rest of the network
+  - Not multi-tenant friendly
+
+---
+# Virtual bridging variant
+- MACVLAN
+  - Assign multiple MACs to a NIC
+
+---
+# Virtual routing
+- Linux bridge can be given an IP (make it a GW)
+- Linux kernel does the routing and NAT
+
+---
+# Docker Example
+<img src="docker-turtles-communication.jpg" width="600px">
+
+---
+# Docker Example
+<img src="docker-net.png" width="600px">
+
+---
+# Docker Example
+- Container net on each host
+- Routed through the host with IP Masq to outside
+
+---
+# Overlay networks
+- A layer of indirection
+- Mesh of point-to-point tunnels
+
+---
+# Tunneling
+- Take a packet with it's headers
+  - Starting with MAC or IP
+- Put it as payload of another packet
+  - Payload of MAC/IP/UDP
+
+---
+# Example: IPIP tunneling
+<img src="ipip.gif" width="600px">
+
+---
+# Lots of tunnels
+- IPIP
+- SIT
+- GRE
+- NVGRE
+- VXLAN
+
+---
+# Mesh networking
+- For each cluster member
+  - Create a tunnel to all other members
+  - That's the data plane
+- The challenge is management (members change!)
+  - Control plane
+
+---
+# VXLAN
+- Very popular today
+- Wraps L2 in L4 (UDP)
+- Hash its own header
+  - Contains 24-bit VNID (tenant ID)
+- High overhead
+
+---
+# VXLAN
+<img src="vxlan.jpg" width="600px">
+
+---
+# Overlay networks
+- Easier and harder to manage
+- Size overhead (reduced MTU)
+- Control plane is crucial
+
+---
+# Overlay network systems
+- Weave
+- Calico
+- flannel
+- OpenContrail
+- OpenStack
+- Docker
+
+---
+# Overlay network control plane
+- Database
+  - Cassandra
+  - Zookeeper
+  - etcd
+  - Consul
+  - MySQL
+- Gossip protocols
+  - Seeded with a peer
+- Agent on each host
+
+---
+# Thank you for listening
+
+<img src="thats-all.jpg" width="600px">
+
+		</textarea>
+		<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+		<script>
+			var slideshow = remark.create();
+		</script>
+		<script></script>
+	</body>
+</html>
